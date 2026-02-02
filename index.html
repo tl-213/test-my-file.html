@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi"> <!--lấy ngôn ngữ tiếng việt "vi" = vietnamese hoặc vietnam-->
   <head>
     <meta charset="UTF-8">
     <title>Create game</title>
 
     <style>
       body {
-        margin: 0;
-        background: #222;
+        /*margin: 0;*/  /*  Hệ thống mặc định có khoảng trắng xung quanh (thường là 8px), dòng này xóa khoảng cách đó. Nếu không có dòng này thì canvas sẽ không sát mép trình duyệt  */
+        background: #242;  /* Màu nền cho toàn bộ trang */
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        height: 50vh;
       }
 
       canvas {
         background: #111;
-        border: 3px solid white;
+        border: 3px solid green;
       }
     </style>
     
   </head>
+  
   <body>
-    <canvas id="test canvas" width="400" height="300"></canvas>
+    <canvas id="test canvas" width="600" height="450"></canvas>
 
     <script>
       const canvas = document.getElementById("test canvas");
       const ctx = canvas.getContext("2d");
 
       let player = {
-        x: 100,
-        y: 200,
-        r: 20,
+        x: 30,
+        y: 30,
+        r: 30,
         speed: 5
       };
 
