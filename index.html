@@ -7,7 +7,7 @@
     <style> /*-- Cái thẻ để viết CSS -->*/
       body {
         margin: 0;  /*  Hệ thống mặc định có khoảng trắng xung quanh (thường là 8px), dòng này xóa khoảng cách đó. Nếu không có dòng này thì canvas sẽ không sát mép trình duyệt  */
-        background: rgb(34, 34, 34);  /* Màu nền cho toàn bộ trang */
+        background: rgba(34, 34, 34, 1);  /* Màu nền cho toàn bộ trang */
         display: flex;  /* Kích hoạt Flexbox - một công cụ giúp căn chỉnh linh hoạt. Giúp dễ dàng căn chỉnh phần tử con (phần tử con ở đây là canvas) */
         justify-content: center;  /* Căn chỉnh theo chiều ngang. center để đưa phần tử con ra giữa */
         align-items: center;  /* Căn chỉnh theo chiều dọc. center để đưa phần tử con ra giữa */
@@ -27,36 +27,94 @@
 
     <script>
       const canvas = document.getElementById("test canvas");
-      const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext("2d"); // ctx là cây bút vẽ
 
-      let player = {
+      let EventKeydown_of_player = {
+        event_of_player1: "o",
+        event_of_player2: "o"
+      };
+
+      let player1 = {
         x: 30,
         y: 30,
-        r: 30,
+        r: 20,
+        color: "rgba(255, 0, 0, 1)",
         speed: 5
       };
 
-      function drawPlayer() {
+      function drawPlayer1() {
         ctx.beginPath();
-        ctx.arc(player.x, player.y, player.r, 0, Math.PI * 2);
-        ctx.fillStyle = "green";
+        ctx.arc(player1.x, player1.y, player1.r, 0, Math.PI * 2);
+        ctx.fillStyle = player1.color;
         ctx.fill();
-      }
+      };
+
+      let player2 = {
+        x: 570,
+        y: 420,
+        r: 20,
+        color: "rgba(0, 255, 0, 1)",
+        speed: 5
+      };
+
+      function drawPlayer2() {
+        if (EventKeydown_of_player.event_of_player2 === "w") {
+          player2.y -= player2.speed;
+        }
+        else if (EventKeydown_of_player.event_of_player2 === "s") {
+          player2.y += player2.speed;
+        }
+        else if (EventKeydown_of_player.event_of_player2 === "a") {
+          player2.x -= player2.speed;
+        }
+        else if (EventKeydown_of_player.event_of_player2 === "d") {
+          player2.x += player2.speed;
+        }
+        
+        ctx.beginPath();
+        ctx.arc(player2.x, player2.y, player2.r, 0, Math.PI * 2);
+        ctx.fillStyle = player2.color;
+        ctx.fill();
+      };
       
       function gameLoop() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        drawPlayer()
-        requestAnimationFrame(gameLoop)
-      }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawPlayer1();
+        drawPlayer2();
+        requestAnimationFrame(gameLoop);
+      };
 
       window.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowLeft")  player.x -= player.speed
-        if (e.key === "ArrowRight")  player.x += player.speed
-        if (e.key === "ArrowUp")  player.y -= player.speed
-        if (e.key === "ArrowDown")  player.y += player.speed
-      })
+        if (e.key === "ArrowLeft") {
+          player1.x -= player1.speed;
+        }
+        else if (e.key === "ArrowRight") {
+          player1.x += player1.speed;
+        }
+        else if (e.key === "ArrowUp") {
+          player1.y -= player1.speed;
+        }
+        else if (e.key === "ArrowDown") {
+          player1.y += player1.speed;
+        }
+      });
 
-      gameLoop()
+      window.addEventListener("keydown", (e) => {
+        if (e.key.toLowerCase() === "w") {
+          EventKeydown_of_player.event_of_player1 = "w";
+        }
+        else if (e.key.toLowerCase() === "s") {
+          EventKeydown_of_player.event_of_player1 = "s";
+        }
+        else if (e.key.toLowerCase() === "a") {
+          EventKeydown_of_player.event_of_player1 = "a";
+        }
+        else if (e.key.toLowerCase() === "d") {
+          EventKeydown_of_player.event_of_player1 = "d";
+        }
+      });
+
+      gameLoop();
     </script>
   </body>
 </html>
