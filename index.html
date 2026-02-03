@@ -23,10 +23,10 @@
   </head>
   
   <body>
-    <canvas id="test canvas" width="600" height="450"></canvas>
+    <canvas id="test_canvas" width="600" height="450"></canvas>
 
     <script>
-      const canvas = document.getElementById("test canvas");
+      const canvas = document.getElementById("test_canvas");
       const ctx = canvas.getContext("2d"); // ctx là cây bút vẽ
 
       let EventKeydown_of_player = {
@@ -43,6 +43,19 @@
       };
 
       function drawPlayer1() {
+        if (EventKeydown_of_player.event_of_player1 === "ArrowUp") {
+          player1.y -= player1.speed;
+        }
+        else if (EventKeydown_of_player.event_of_player1 === "ArrowDown") {
+          player1.y += player1.speed;
+        }
+        else if (EventKeydown_of_player.event_of_player1 === "ArrowLeft") {
+          player1.x -= player1.speed;
+        }
+        else if (EventKeydown_of_player.event_of_player1 === "ArrowRight") {
+          player1.x += player1.speed;
+        }
+        
         ctx.beginPath();
         ctx.arc(player1.x, player1.y, player1.r, 0, Math.PI * 2);
         ctx.fillStyle = player1.color;
@@ -86,31 +99,34 @@
 
       window.addEventListener("keydown", (e) => {
         if (e.key === "ArrowLeft") {
-          player1.x -= player1.speed;
+          EventKeydown_of_player.event_of_player1 = e.key;
         }
         else if (e.key === "ArrowRight") {
-          player1.x += player1.speed;
+          EventKeydown_of_player.event_of_player1 = e.key;
         }
         else if (e.key === "ArrowUp") {
-          player1.y -= player1.speed;
+          EventKeydown_of_player.event_of_player1 = e.key;
         }
         else if (e.key === "ArrowDown") {
-          player1.y += player1.speed;
+          EventKeydown_of_player.event_of_player1 = e.key;
         }
       });
 
       window.addEventListener("keydown", (e) => {
         if (e.key.toLowerCase() === "w") {
-          EventKeydown_of_player.event_of_player1 = "w";
+          EventKeydown_of_player.event_of_player2 = e.key;
         }
         else if (e.key.toLowerCase() === "s") {
-          EventKeydown_of_player.event_of_player1 = "s";
+          EventKeydown_of_player.event_of_player2 = e.key;
+          console.log(e.key);
+          console.log(EventKeydown_of_player["event_of_player1"]);
+	        console.log(player1.y)
         }
         else if (e.key.toLowerCase() === "a") {
-          EventKeydown_of_player.event_of_player1 = "a";
+          EventKeydown_of_player.event_of_player2 = e.key;
         }
         else if (e.key.toLowerCase() === "d") {
-          EventKeydown_of_player.event_of_player1 = "d";
+          EventKeydown_of_player.event_of_player2 = e.key;
         }
       });
 
