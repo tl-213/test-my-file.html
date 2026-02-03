@@ -128,12 +128,21 @@
       });
 	  
 	  window.addEventListener("keyup", (e) => {
-		if (e.key.toLowerCase() === "w" || e.key.toLowerCase() === "a" || e.key.toLowerCase() === "s" || e.key.toLowerCase() === "d") {
+		if (e.key.toLowerCase() === "w" || 
+			e.key.toLowerCase() === "a" || 
+			e.key.toLowerCase() === "s" || 
+			e.key.toLowerCase() === "d"
+		   ) {
 		  EventKeydown_of_player.event_of_player2 = "o"
 		}
-		else if (e.key.toLowerCase() === "ArrowUp" || e.key.ToLowerCase() === "ArrowDown" || e.key.ToLowerCase() === "ArrowLeft" || e.key.ToLowerCase() === "ArrowRight") Ơ
-		  EventKeydown_of_player.event_of_player1 = "o"
-		});
+		else if (e.key === "ArrowUp" || 
+				 e.key === "ArrowDown" || 
+				 e.key === "ArrowLeft" || 
+				 e.key === "ArrowRight"
+				) {
+			EventKeydown_of_player.event_of_player1 = "o"
+		}
+	  });
 
       gameLoop();
     </script>
