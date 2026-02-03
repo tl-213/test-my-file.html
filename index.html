@@ -30,8 +30,8 @@
       const ctx = canvas.getContext("2d"); // ctx là cây bút vẽ
 
       let EventKeydown_of_player = {
-        event_of_player1: "o",
-        event_of_player2: "o"
+        event_of_player1: "o",   // "Arrow"
+        event_of_player2: "o"	 // "W-A-S-D"
       };
 
       let player1 = {
@@ -118,9 +118,6 @@
         }
         else if (e.key.toLowerCase() === "s") {
           EventKeydown_of_player.event_of_player2 = e.key;
-          console.log(e.key);
-          console.log(EventKeydown_of_player["event_of_player1"]);
-	        console.log(player1.y)
         }
         else if (e.key.toLowerCase() === "a") {
           EventKeydown_of_player.event_of_player2 = e.key;
@@ -129,6 +126,14 @@
           EventKeydown_of_player.event_of_player2 = e.key;
         }
       });
+	  
+	  window.addEventListener("keyup", (e) => {
+		if (e.key.toLowerCase() === "w" || e.key.toLowerCase() === "a" || e.key.toLowerCase() === "s" || e.key.toLowerCase() === "d") {
+		  EventKeydown_of_player.event_of_player2 = "o"
+		}
+		else if (e.key.toLowerCase() === "ArrowUp" || e.key.ToLowerCase() === "ArrowDown" || e.key.ToLowerCase() === "ArrowLeft" || e.key.ToLowerCase() === "ArrowRight") Ơ
+		  EventKeydown_of_player.event_of_player1 = "o"
+		});
 
       gameLoop();
     </script>
