@@ -22,39 +22,43 @@
   </head>
 
   <body>
-    <canvas id="test_canvas" width="600" height="450"></canvas>
+    <canvas id="test_canvas" width="1200" height="545"></canvas>
 
     <script>
       const canvas = document.getElementById("test_canvas");
       const ctx = canvas.getContext("2d");
 
       let EventKeydown_of_player = {
-        event_of_player1: "o" // Arrow keys
+        event_of_player1: "o",
+
+        skill: {
+          
+        }
       };
 
       let player1 = {
-        x: canvas.width - 40,
-        y: canvas.height / 2,
-        r: 20,
+        x: 40,
+        y: 40,
+        r: 18,
         color: "rgba(255, 0, 0, 1)",
         speed: 5,
-        hp_now: 70,
+        hp_now: 100,
         hp_max: 100,
-        rect_w: 70,
-        rect_h: 12
+        rect_w: 60,
+        rect_h: 14
       };
 
       function drawPlayer1() {
-        if (EventKeydown_of_player.event_of_player1 === "ArrowUp") {
+        if (EventKeydown_of_player.event_of_player1 === "w") {
           player1.y -= player1.speed;
         }
-        else if (EventKeydown_of_player.event_of_player1 === "ArrowDown") {
+        else if (EventKeydown_of_player.event_of_player1 === "s") {
           player1.y += player1.speed;
         }
-        else if (EventKeydown_of_player.event_of_player1 === "ArrowLeft") {
+        else if (EventKeydown_of_player.event_of_player1 === "a") {
           player1.x -= player1.speed;
         }
-        else if (EventKeydown_of_player.event_of_player1 === "ArrowRight") {
+        else if (EventKeydown_of_player.event_of_player1 === "d") {
           player1.x += player1.speed;
         }
 
@@ -101,10 +105,10 @@
 
       window.addEventListener("keyup", (e) => {
         if (
-          e.key.toLowerCase === "w" ||
-          e.key.toLowerCase === "s" ||
-          e.key.toLowerCase === "a" ||
-          e.key.toLowerCase === "d"
+          e.key.toLowerCase() === "w" ||
+          e.key.toLowerCase() === "s" ||
+          e.key.toLowerCase() === "a" ||
+          e.key.toLowerCase() === "d"
         ) {
           EventKeydown_of_player.event_of_player1 = "o";
         }
