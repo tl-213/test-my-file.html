@@ -2,7 +2,7 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8">
-    <title>Create game</title>
+    <title>TLg</title>
 
     <style>
       body {
@@ -29,7 +29,9 @@
       const ctx = canvas.getContext("2d");
 
       let EventKeydown_of_player = {
-        event_of_player1: "o",
+        move: {
+          normal: "o"
+        },
 
         skill: {
           
@@ -37,28 +39,30 @@
       };
 
       let player1 = {
-        x: 40,
-        y: 40,
+        x: canvas.width,
+        y: canvas.height,
         r: 18,
         color: "rgba(255, 0, 0, 1)",
         speed: 5,
-        hp_now: 100,
+        hp_now: 57,
         hp_max: 100,
-        rect_w: 60,
-        rect_h: 14
+        rect_hp: {
+          rect_w: 200,
+          rect_h: 30
+        }
       };
 
       function drawPlayer1() {
-        if (EventKeydown_of_player.event_of_player1 === "w") {
+        if (EventKeydown_of_player.move.normal === "w") {
           player1.y -= player1.speed;
         }
-        else if (EventKeydown_of_player.event_of_player1 === "s") {
+        else if (EventKeydown_of_player.move.normal === "s") {
           player1.y += player1.speed;
         }
-        else if (EventKeydown_of_player.event_of_player1 === "a") {
+        else if (EventKeydown_of_player.move.normal === "a") {
           player1.x -= player1.speed;
         }
-        else if (EventKeydown_of_player.event_of_player1 === "d") {
+        else if (EventKeydown_of_player.move.normal === "d") {
           player1.x += player1.speed;
         }
 
@@ -70,19 +74,19 @@
         ctx.beginPath();
         ctx.fillStyle = "red";
         ctx.fillRect(
-          player1.x - player1.rect_w / 2,
-          player1.y - 25 - player1.rect_h,
-          player1.rect_w,
-          player1.rect_h
+          10,
+          70,
+          player1.rect_hp.rect_w,
+          player1.rect_hp.rect_h
         );
 
         ctx.beginPath();
         ctx.fillStyle = "green";
         ctx.fillRect(
-          player1.x - player1.rect_w / 2,
-          player1.y - 25 - player1.rect_h,
-          player1.rect_w * (player1.hp_now / player1.hp_max),
-          player1.rect_h
+          10,
+          70,
+          player1.rect_hp.rect_w * (player1.hp_now / player1.hp_max),
+          player1.rect_hp.rect_h
         );
       }
 
@@ -99,7 +103,7 @@
           e.key === "w" ||
           e.key === "s"
         ) {
-          EventKeydown_of_player.event_of_player1 = e.key;
+          EventKeydown_of_player.move.normal = e.key;
         }
       });
 
@@ -110,7 +114,7 @@
           e.key.toLowerCase() === "a" ||
           e.key.toLowerCase() === "d"
         ) {
-          EventKeydown_of_player.event_of_player1 = "o";
+          EventKeydown_of_player.move.normal = "o";
         }
       });
 
